@@ -1,0 +1,43 @@
+/* src/AlertModal.css */
+.alert-modal {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  max-width: 90%;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  z-index: 9999;
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+.alert-modal h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.alert-modal p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Alert colors */
+.alert-modal.success {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.alert-modal.error {
+  background-color: #f2dede;
+  color: #a94442;
+}
+
+/* Slide-down animation */
+@keyframes slideDown {
+  to {
+    top: 20px;
+  }
+}
