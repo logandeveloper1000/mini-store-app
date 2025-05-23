@@ -22,7 +22,7 @@ function CartPage() {
 
   useEffect(() => {
     const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
-      if (!user) return;
+      if (!user) return navigate("/login");
 
       const cartRef = collection(db, "carts", user.uid, "items");
       const unsubscribe = onSnapshot(cartRef, (snapshot) => {
@@ -35,7 +35,7 @@ function CartPage() {
     });
 
     return () => unsubscribeAuth();
-  }, []);
+  }, [navigate]);
 
   const handleRemove = async (item) => {
     const user = auth.currentUser;

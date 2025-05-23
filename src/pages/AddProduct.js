@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { db, storage, auth } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import AlertModal from "../components/AlertModal";
 import MobileLogout from "../components/MobileLogout";
+import Spinner from "../components/Spinner";
+import { onAuthStateChanged } from "firebase/auth";
 import "./AddProduct.css";
 
 function AddProduct() {
@@ -14,14 +16,25 @@ function AddProduct() {
   const [imageFile, setImageFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [alert, setAlert] = useState(null);
+  const [authChecked, setAuthChecked] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigate("/login");
+      } else {
+        setAuthChecked(true);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = auth.currentUser;
-    if (!user) {
-      return setAlert({ type: "error", title: "Error", message: "Please log in." });
-    }
+    if (!user) return;
 
     if (!title || !description || !price || !imageFile) {
       return setAlert({ type: "error", title: "Error", message: "Please fill all fields." });
@@ -52,6 +65,8 @@ function AddProduct() {
       setUploading(false);
     }
   };
+
+  if (!authChecked) return <Spinner />;
 
   return (
     <div className="add-product-page">
