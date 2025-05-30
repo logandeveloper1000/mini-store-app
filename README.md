@@ -3,7 +3,7 @@
 Mini Store is a full-featured e-commerce web application built using React and Firebase. It provides a complete user experience with authentication, real-time product management, and a dynamic shopping cart system.
 
 ### Live Demo
-Access the project here: [https://logan-mini-store.netlify.app](https://logan-mini-store.netlify.app)
+Access the project here: [https://user-mini-store.netlify.app](https://user-mini-store.netlify.app)
 
 ## Features
 
@@ -94,4 +94,4 @@ service firebase.storage {
 ## Author
 
 Gabriel Logan  
-Deployed with Netlify at: [https://logan-mini-store.netlify.app](https://logan-mini-store.netlify.app)
+Deployed with Netlify at: [https://user-mini-store.netlify.app](https://user-mini-store.netlify.app)
